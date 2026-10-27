@@ -28,3 +28,8 @@
 .mm-status--error {
 	color: var(--danger, #c52827);
 }
+
+.mm-upload {
+	margin: 0;
+	cursor: pointer;
+}

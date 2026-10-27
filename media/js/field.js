@@ -21,7 +21,7 @@
       this.config = JSON.parse(root.dataset.config || '{}');
       this.status = root.querySelector('[data-mm-status]');
       this.drop = root.querySelector('[data-mm-drop]');
-      this.button = root.querySelector('[data-mm-upload]');
+      this.input = root.querySelector('[data-mm-input]');
       this.subform = root.querySelector('joomla-field-subform');
 
       this.dragDepth = 0;
@@ -30,15 +30,6 @@
     announce(message, isError = false) {
       this.status.textContent = message;
       this.status.classList.toggle('mm-status--error', isError);
-    }
-
-    pick() {
-      const input = document.createElement('input');
-      input.type = 'file';
-      input.multiple = this.config.maxFiles > 1;
-      input.accept = this.config.extensions.map((ext) => `.${ext}`).join(',');
-      input.addEventListener('change', () => this.upload([...input.files]));
-      input.click();
     }
 
     /* Файлы отправляются по очереди: сервер проверяет каждый и возвращает итоговый путь. */
@@ -57,7 +48,7 @@
           continue;
         }
 
-        this.button.disabled = true;
+        this.input.disabled = true;
         this.announce(format(text('PLG_FIELDS_MULTIMEDIA_JS_UPLOADING'), file.name));
 
         try {
@@ -72,7 +63,7 @@
         } catch (error) {
           this.announce(`${file.name}: ${error.message || text('PLG_FIELDS_MULTIMEDIA_JS_ERROR')}`, true);
         } finally {
-          this.button.disabled = false;
+          this.input.disabled = false;
         }
       }
     }
@@ -146,13 +137,18 @@
   };
   const hasFiles = (event) => [...(event.dataTransfer?.types || [])].includes('Files');
 
-  document.addEventListener('click', (event) => {
-    if (event.target instanceof Element && event.target.closest('[data-mm-upload]')) {
-      const uploader = uploaderFor(event.target);
+  // Кнопка — это label вокруг скрытого input[type=file]: выбор файла открывает сам браузер.
+  document.addEventListener('change', (event) => {
+    const input = event.target;
 
-      if (uploader) {
-        event.preventDefault();
-        uploader.pick();
+    if (input instanceof HTMLInputElement && input.matches('[data-mm-input]')) {
+      const uploader = uploaderFor(input);
+      const files = [...input.files];
+
+      input.value = '';
+
+      if (uploader && files.length) {
+        uploader.upload(files);
       }
     }
   });

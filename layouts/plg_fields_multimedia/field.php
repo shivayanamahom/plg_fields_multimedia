@@ -32,9 +32,10 @@ $hint = Text::sprintf(
 ?>
 <div class="multimedia-field mm-field" data-mm-field data-config="<?php echo htmlspecialchars(json_encode($config, JSON_UNESCAPED_SLASHES), ENT_QUOTES, 'UTF-8'); ?>">
 	<div class="mm-toolbar">
-		<button type="button" class="btn btn-primary" data-mm-upload>
+		<label class="btn btn-primary mm-upload">
 			<span class="icon-upload" aria-hidden="true"></span> <?php echo Text::_('PLG_FIELDS_MULTIMEDIA_FIELD_UPLOAD'); ?>
-		</button>
+			<input type="file" class="visually-hidden" data-mm-input<?php echo $config['maxFiles'] > 1 ? ' multiple' : ''; ?> accept="<?php echo htmlspecialchars('.' . implode(',.', $config['extensions']), ENT_QUOTES, 'UTF-8'); ?>">
+		</label>
 		<span class="form-text"><?php echo htmlspecialchars($hint, ENT_QUOTES, 'UTF-8'); ?></span>
 	</div>
 	<div class="mm-drop" data-mm-drop hidden><?php echo Text::_('PLG_FIELDS_MULTIMEDIA_FIELD_DROP'); ?></div>
