@@ -183,6 +183,11 @@
 	padding: 0.5rem 0.5rem 0;
 }
 
+.mm-field joomla-field-media .btn {
+	padding: 0.3rem 0.6rem;
+	font-size: 0.875rem;
+}
+
 .mm-field joomla-field-media .field-media-input {
 	min-width: 0;
 	font-size: 0.75rem;
