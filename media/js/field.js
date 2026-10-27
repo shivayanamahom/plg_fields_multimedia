@@ -24,8 +24,7 @@
       this.button = root.querySelector('[data-mm-upload]');
       this.subform = root.querySelector('joomla-field-subform');
 
-      this.button.addEventListener('click', () => this.pick());
-      this.bindDrop();
+      this.dragDepth = 0;
     }
 
     announce(message, isError = false) {
@@ -40,37 +39,6 @@
       input.accept = this.config.extensions.map((ext) => `.${ext}`).join(',');
       input.addEventListener('change', () => this.upload([...input.files]));
       input.click();
-    }
-
-    bindDrop() {
-      const hasFiles = (event) => [...(event.dataTransfer?.types || [])].includes('Files');
-      let depth = 0;
-
-      this.root.addEventListener('dragenter', (event) => {
-        if (hasFiles(event)) {
-          depth += 1;
-          this.drop.hidden = false;
-        }
-      });
-      this.root.addEventListener('dragleave', (event) => {
-        if (hasFiles(event)) {
-          depth = Math.max(0, depth - 1);
-          this.drop.hidden = depth === 0;
-        }
-      });
-      this.root.addEventListener('dragover', (event) => {
-        if (hasFiles(event)) {
-          event.preventDefault();
-        }
-      });
-      this.root.addEventListener('drop', (event) => {
-        if (hasFiles(event)) {
-          event.preventDefault();
-          depth = 0;
-          this.drop.hidden = true;
-          this.upload([...event.dataTransfer.files]);
-        }
-      });
     }
 
     /* Файлы отправляются по очереди: сервер проверяет каждый и возвращает итоговый путь. */
@@ -161,7 +129,62 @@
     }
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('[data-mm-field]').forEach((root) => new Uploader(root));
+  /*
+   * Обработчики на документе: работают независимо от момента загрузки скрипта и от того,
+   * переносит ли Joomla блоки формы (вкладки) по DOM.
+   */
+  const uploaderFor = (target) => {
+    const root = target instanceof Element ? target.closest('[data-mm-field]') : null;
+
+    if (!root) {
+      return null;
+    }
+
+    root.mmUploader = root.mmUploader || new Uploader(root);
+
+    return root.mmUploader;
+  };
+  const hasFiles = (event) => [...(event.dataTransfer?.types || [])].includes('Files');
+
+  document.addEventListener('click', (event) => {
+    if (event.target instanceof Element && event.target.closest('[data-mm-upload]')) {
+      const uploader = uploaderFor(event.target);
+
+      if (uploader) {
+        event.preventDefault();
+        uploader.pick();
+      }
+    }
+  });
+  document.addEventListener('dragenter', (event) => {
+    const uploader = hasFiles(event) ? uploaderFor(event.target) : null;
+
+    if (uploader) {
+      uploader.dragDepth += 1;
+      uploader.drop.hidden = false;
+    }
+  });
+  document.addEventListener('dragleave', (event) => {
+    const uploader = hasFiles(event) ? uploaderFor(event.target) : null;
+
+    if (uploader) {
+      uploader.dragDepth = Math.max(0, uploader.dragDepth - 1);
+      uploader.drop.hidden = uploader.dragDepth === 0;
+    }
+  });
+  document.addEventListener('dragover', (event) => {
+    if (hasFiles(event) && uploaderFor(event.target)) {
+      event.preventDefault();
+    }
+  });
+  document.addEventListener('drop', (event) => {
+    const uploader = hasFiles(event) ? uploaderFor(event.target) : null;
+
+    if (uploader) {
+      event.preventDefault();
+      uploader.dragDepth = 0;
+      uploader.drop.hidden = true;
+      uploader.upload([...event.dataTransfer.files]);
+    }
   });
 })(window, document, window.Joomla);
