@@ -113,8 +113,11 @@
 	padding-bottom: 0.5rem;
 }
 
-/* Кнопки строки внизу карточки: «+», «−», перемещение на всю ширину */
-.mm-field .subform-repeatable-group > .btn-toolbar {
+/*
+ * Кнопки строки внизу карточки: «+», «−», перемещение в один ряд на всю ширину.
+ * Atum позиционирует их абсолютно по углам, поэтому селекторы повторяют его специфичность.
+ */
+.mm-field div.subform-repeatable-group > .btn-toolbar {
 	order: 9;
 	display: block;
 	width: 100%;
@@ -122,21 +125,30 @@
 	padding: 0;
 }
 
-.mm-field .subform-repeatable-group > .btn-toolbar .btn-group {
+.mm-field div.subform-repeatable-group > .btn-toolbar .btn-group {
 	display: flex;
+	position: static;
 	width: 100%;
 	margin: 0;
 }
 
-.mm-field .subform-repeatable-group > .btn-toolbar .btn {
+.mm-field div.subform-repeatable-group > .btn-toolbar .btn-group .btn {
 	position: static;
 	flex: 1 1 0;
+	inset: auto;
 	margin: 0;
+	padding: 0.4rem 0;
 	border-radius: 0;
+	line-height: 1.25;
+	transform: none;
 }
 
-.mm-field .subform-repeatable-group .group-move-up,
-.mm-field .subform-repeatable-group .group-move-down {
+.mm-field div.subform-repeatable-group > .btn-toolbar .btn-group .btn.group-move span {
+	padding: 0;
+}
+
+.mm-field div.subform-repeatable-group > .btn-toolbar .btn-group .btn.group-move-up,
+.mm-field div.subform-repeatable-group > .btn-toolbar .btn-group .btn.group-move-down {
 	display: none;
 }
 
