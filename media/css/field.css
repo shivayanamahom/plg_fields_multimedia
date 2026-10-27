@@ -93,6 +93,8 @@
 	display: flex;
 	flex-direction: column;
 	min-width: 0;
+	margin: 0;
+	padding: 0;
 	overflow: hidden;
 	border: 1px solid var(--mm-border);
 	border-radius: var(--mm-radius);
@@ -114,18 +116,22 @@
 /* Кнопки строки внизу карточки: «+», «−», перемещение на всю ширину */
 .mm-field .subform-repeatable-group > .btn-toolbar {
 	order: 9;
+	display: block;
 	width: 100%;
 	margin: 0;
+	padding: 0;
 }
 
 .mm-field .subform-repeatable-group > .btn-toolbar .btn-group {
 	display: flex;
 	width: 100%;
+	margin: 0;
 }
 
 .mm-field .subform-repeatable-group > .btn-toolbar .btn {
 	position: static;
 	flex: 1 1 0;
+	margin: 0;
 	border-radius: 0;
 }
 

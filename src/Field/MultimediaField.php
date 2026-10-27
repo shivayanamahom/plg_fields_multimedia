@@ -89,15 +89,12 @@ class MultimediaField extends SubformField
         $xml = '<form>'
             . '<field name="file" type="media" required="true" hiddenLabel="true" types="' . ($gallery ? 'images' : 'documents') . '"'
             . ' directory="' . $directory . '" preview="' . ($gallery ? 'tooltip' : 'false') . '"'
-            . ' label="' . ($gallery ? 'PLG_FIELDS_MULTIMEDIA_FIELD_IMAGE' : 'PLG_FIELDS_MULTIMEDIA_FIELD_FILE') . '"/>'
-            . '<field name="title" type="text" maxlength="255" hiddenLabel="true"'
-            . ' label="' . ($gallery ? 'PLG_FIELDS_MULTIMEDIA_FIELD_CAPTION' : 'PLG_FIELDS_MULTIMEDIA_FIELD_NAME') . '"'
-            . ' hint="' . ($gallery ? 'PLG_FIELDS_MULTIMEDIA_FIELD_CAPTION' : 'PLG_FIELDS_MULTIMEDIA_FIELD_NAME') . '"/>';
+            . ' label="' . ($gallery ? 'PLG_FIELDS_MULTIMEDIA_FIELD_IMAGE' : 'PLG_FIELDS_MULTIMEDIA_FIELD_FILE') . '"/>';
 
-        if ($gallery) {
-            $xml .= '<field name="alt" type="text" maxlength="255" hiddenLabel="true"'
-                . ' label="PLG_FIELDS_MULTIMEDIA_FIELD_ALT" hint="PLG_FIELDS_MULTIMEDIA_FIELD_ALT"/>';
-        }
+        // Галерея: одно описание служит и alt, и подписью. Файлы: название для посетителей.
+        $xml .= $gallery
+            ? '<field name="alt" type="text" maxlength="255" hiddenLabel="true" label="PLG_FIELDS_MULTIMEDIA_FIELD_ALT" hint="PLG_FIELDS_MULTIMEDIA_FIELD_ALT"/>'
+            : '<field name="title" type="text" maxlength="255" hiddenLabel="true" label="PLG_FIELDS_MULTIMEDIA_FIELD_NAME" hint="PLG_FIELDS_MULTIMEDIA_FIELD_NAME"/>';
 
         return $xml . '</form>';
     }

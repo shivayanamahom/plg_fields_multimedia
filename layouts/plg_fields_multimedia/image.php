@@ -26,22 +26,23 @@ $e       = static fn ($text): string => htmlspecialchars((string) $text, ENT_QUO
 $src     = $item['thumb']['url'] ?? $item['url'];
 $width   = $item['thumb']['width'] ?? null;
 $height  = $item['thumb']['height'] ?? null;
-$alt     = $item['alt'] !== '' ? $item['alt'] : $item['title'];
-$caption = $settings['show_captions'] && $item['title'] !== '';
+// Одно описание служит и alt, и подписью (title — значения, сохранённые прежней версией).
+$text    = $item['alt'] !== '' ? $item['alt'] : $item['title'];
+$caption = $settings['show_captions'] && $text !== '';
 
-$img = '<img class="mm-img" src="' . $e($src) . '" alt="' . $e($alt) . '"'
+$img = '<img class="mm-img" src="' . $e($src) . '" alt="' . $e($text) . '"'
 	. ($width && $height ? ' width="' . (int) $width . '" height="' . (int) $height . '"' : '')
 	. ' loading="lazy" decoding="async">';
 ?>
 <figure class="mm-figure">
 	<?php if ($engine === 'fancybox') : ?>
-		<a class="mm-link" href="<?php echo $e($item['url']); ?>" data-fancybox="<?php echo $e($group); ?>"<?php echo $item['title'] !== '' ? ' data-caption="' . $e($item['title']) . '"' : ''; ?>><?php echo $img; ?></a>
+		<a class="mm-link" href="<?php echo $e($item['url']); ?>" data-fancybox="<?php echo $e($group); ?>"<?php echo $text !== '' ? ' data-caption="' . $e($text) . '"' : ''; ?>><?php echo $img; ?></a>
 	<?php elseif ($engine === 'builtin') : ?>
-		<a class="mm-link" href="<?php echo $e($item['url']); ?>" data-mm-open data-mm-group="<?php echo $e($group); ?>"<?php echo $item['title'] !== '' ? ' data-mm-caption="' . $e($item['title']) . '"' : ''; ?>><?php echo $img; ?></a>
+		<a class="mm-link" href="<?php echo $e($item['url']); ?>" data-mm-open data-mm-group="<?php echo $e($group); ?>"<?php echo $text !== '' ? ' data-mm-caption="' . $e($text) . '"' : ''; ?>><?php echo $img; ?></a>
 	<?php else : ?>
 		<?php echo $img; ?>
 	<?php endif; ?>
 	<?php if ($caption) : ?>
-		<figcaption class="mm-caption"><?php echo $e($item['title']); ?></figcaption>
+		<figcaption class="mm-caption"><?php echo $e($text); ?></figcaption>
 	<?php endif; ?>
 </figure>
