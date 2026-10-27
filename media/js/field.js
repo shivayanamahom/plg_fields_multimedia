@@ -20,7 +20,6 @@
       this.root = root;
       this.config = JSON.parse(root.dataset.config || '{}');
       this.status = root.querySelector('[data-mm-status]');
-      this.drop = root.querySelector('[data-mm-drop]');
       this.input = root.querySelector('[data-mm-input]');
       this.subform = root.querySelector('joomla-field-subform');
 
@@ -162,7 +161,7 @@
 
     if (uploader) {
       uploader.dragDepth += 1;
-      uploader.drop.hidden = false;
+      uploader.root.classList.add('mm-field--dragover');
     }
   });
   document.addEventListener('dragleave', (event) => {
@@ -170,7 +169,7 @@
 
     if (uploader) {
       uploader.dragDepth = Math.max(0, uploader.dragDepth - 1);
-      uploader.drop.hidden = uploader.dragDepth === 0;
+      uploader.root.classList.toggle('mm-field--dragover', uploader.dragDepth > 0);
     }
   });
   document.addEventListener('dragover', (event) => {
@@ -184,7 +183,7 @@
     if (uploader) {
       event.preventDefault();
       uploader.dragDepth = 0;
-      uploader.drop.hidden = true;
+      uploader.root.classList.remove('mm-field--dragover');
       uploader.upload([...event.dataTransfer.files]);
     }
   });

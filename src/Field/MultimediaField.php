@@ -70,7 +70,7 @@ class MultimediaField extends SubformField
         $this->multiple = true;
         $this->__set('min', 0);
         $this->__set('max', $this->settings['max_files']);
-        $this->__set('layout', 'joomla.form.field.subform.repeatable-table');
+        $this->__set('layout', 'joomla.form.field.subform.repeatable');
         $this->__set('buttons', 'add,remove,move');
         $this->__set('groupByFieldset', 'false');
         $this->__set('formsource', $this->itemFormXml());
@@ -87,14 +87,16 @@ class MultimediaField extends SubformField
         $directory = htmlspecialchars($this->settings['directory'], ENT_QUOTES, 'UTF-8');
 
         $xml = '<form>'
-            . '<field name="file" type="media" required="true" types="' . ($gallery ? 'images' : 'documents') . '"'
+            . '<field name="file" type="media" required="true" hiddenLabel="true" types="' . ($gallery ? 'images' : 'documents') . '"'
             . ' directory="' . $directory . '" preview="' . ($gallery ? 'tooltip' : 'false') . '"'
             . ' label="' . ($gallery ? 'PLG_FIELDS_MULTIMEDIA_FIELD_IMAGE' : 'PLG_FIELDS_MULTIMEDIA_FIELD_FILE') . '"/>'
-            . '<field name="title" type="text" maxlength="255"'
-            . ' label="' . ($gallery ? 'PLG_FIELDS_MULTIMEDIA_FIELD_CAPTION' : 'PLG_FIELDS_MULTIMEDIA_FIELD_NAME') . '"/>';
+            . '<field name="title" type="text" maxlength="255" hiddenLabel="true"'
+            . ' label="' . ($gallery ? 'PLG_FIELDS_MULTIMEDIA_FIELD_CAPTION' : 'PLG_FIELDS_MULTIMEDIA_FIELD_NAME') . '"'
+            . ' hint="' . ($gallery ? 'PLG_FIELDS_MULTIMEDIA_FIELD_CAPTION' : 'PLG_FIELDS_MULTIMEDIA_FIELD_NAME') . '"/>';
 
         if ($gallery) {
-            $xml .= '<field name="alt" type="text" maxlength="255" label="PLG_FIELDS_MULTIMEDIA_FIELD_ALT"/>';
+            $xml .= '<field name="alt" type="text" maxlength="255" hiddenLabel="true"'
+                . ' label="PLG_FIELDS_MULTIMEDIA_FIELD_ALT" hint="PLG_FIELDS_MULTIMEDIA_FIELD_ALT"/>';
         }
 
         return $xml . '</form>';
