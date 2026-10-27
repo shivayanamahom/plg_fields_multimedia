@@ -6,10 +6,9 @@
 			<!-- Режим: выбирается один раз и после сохранения поля не меняется -->
 			<field
 				name="mode"
-				type="radio"
+				type="list"
 				label="PLG_FIELDS_MULTIMEDIA_MODE"
 				description="PLG_FIELDS_MULTIMEDIA_MODE_DESC"
-				layout="joomla.form.field.radio.buttons"
 				default="gallery"
 				validate="options"
 			>
