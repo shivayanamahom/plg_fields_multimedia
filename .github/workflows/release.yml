@@ -91,4 +91,17 @@ jobs:
             git push origin HEAD:main
           fi
           cp "$package" dist/plg_fields_multimedia.zip
-          gh release create "$tag" "$package" dist/plg_fields_multimedia.zip --title "Multimedia Field $version" --generate-notes
+          cat > notes.md <<NOTES
+          ## Установка
+
+          В Joomla: **Система → Установка → Расширения → «Установить по URL-адресу»**, вставьте ссылку и нажмите «Проверить и установить»:
+
+          \`\`\`text
+          https://github.com/${GH_REPO}/releases/download/${tag}/plg_fields_multimedia-${version}.zip
+          \`\`\`
+
+          Всегда последняя версия: \`https://github.com/${GH_REPO}/releases/latest/download/plg_fields_multimedia.zip\`
+
+          NOTES
+          sed -i 's/^          //' notes.md
+          gh release create "$tag" "$package" dist/plg_fields_multimedia.zip --title "Multimedia Field $version" --notes-file notes.md --generate-notes
