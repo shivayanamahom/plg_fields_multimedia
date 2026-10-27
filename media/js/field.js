@@ -34,9 +34,6 @@
 
     /* Файлы отправляются по очереди: сервер проверяет каждый и возвращает итоговый путь. */
     async upload(files) {
-      await customElements.whenDefined('joomla-field-subform');
-      await customElements.whenDefined('joomla-field-media');
-
       for (const file of files) {
         if (!this.config.extensions.includes(extensionOf(file.name))) {
           this.announce(format(text('PLG_FIELDS_MULTIMEDIA_JS_BAD_TYPE'), file.name), true);
@@ -54,7 +51,7 @@
         try {
           const path = await this.send(file);
 
-          if (!this.addRow(path)) {
+          if (!(await this.addRow(path))) {
             this.announce(format(text('PLG_FIELDS_MULTIMEDIA_JS_LIMIT'), this.config.maxFiles), true);
             break;
           }
@@ -99,7 +96,13 @@
     }
 
     /* Новая строка стандартного subform с выбранным файлом в штатном поле «Медиа». */
-    addRow(path) {
+    async addRow(path) {
+      // Элементы ядра могут быть ещё не готовы; ждём недолго, чтобы загрузка не зависала молча.
+      const wait = (name) => Promise.race([customElements.whenDefined(name), new Promise((resolve) => { window.setTimeout(resolve, 3000); })]);
+
+      await wait('joomla-field-subform');
+      await wait('joomla-field-media');
+
       const rows = this.subform.getRows();
       const row = this.subform.addRow(rows.length ? rows[rows.length - 1] : null);
 
@@ -112,8 +115,10 @@
       try {
         media.setValue(path);
       } catch (e) {
-        // Предпросмотр не построился (нет настроек com_media на странице) — значение всё равно записано.
-        media.querySelector('input').value = path;
+        // Предпросмотр не построился — значение всё равно записываем в поле.
+        const input = media.querySelector('input');
+        input.value = path;
+        input.dispatchEvent(new Event('change', { bubbles: true }));
       }
 
       return true;
