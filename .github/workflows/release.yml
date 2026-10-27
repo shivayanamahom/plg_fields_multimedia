@@ -26,7 +26,7 @@ jobs:
           GH_REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
-          version="$(sed -n 's:.*<version>\(.*\)</version>.*:\1:p' plg_fields_multimedia.xml | head -1)"
+          version="$(sed -n 's:.*<version>\(.*\)</version>.*:\1:p' multimedia.xml | head -1)"
           [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]] || { echo "Invalid extension version: $version" >&2; exit 1; }
           tag="v$version"
           if gh release view "$tag" --json tagName >/dev/null 2>&1; then
