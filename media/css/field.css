@@ -1,0 +1,30 @@
+/* Поле «Мультимедиа» — надстройка загрузки над стандартным subform Joomla. */
+.mm-field [hidden] {
+	display: none !important;
+}
+
+.mm-toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.75rem;
+	margin-bottom: 0.75rem;
+}
+
+.mm-drop {
+	margin-bottom: 0.75rem;
+	padding: 1.5rem;
+	border: 2px dashed var(--template-link-color, #2a69b8);
+	border-radius: 0.375rem;
+	text-align: center;
+}
+
+.mm-status {
+	min-height: 1.25rem;
+	margin: 0 0 0.5rem;
+	font-size: 0.875rem;
+}
+
+.mm-status--error {
+	color: var(--danger, #c52827);
+}

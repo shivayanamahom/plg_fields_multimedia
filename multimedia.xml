@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="fields" method="upgrade">
+	<name>plg_fields_multimedia</name>
+	<author>Domanov Maxim (web design dharma)</author>
+	<creationDate>October 2026</creationDate>
+	<copyright>(C) 2026 Domanov Maxim (web design dharma). All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE</license>
+	<authorEmail>info@dmsite.ru</authorEmail>
+	<authorUrl>https://github.com/shivayanamahom</authorUrl>
+	<version>2.0.0</version>
+	<description>PLG_FIELDS_MULTIMEDIA_XML_DESCRIPTION</description>
+	<namespace path="src">Joomla\Plugin\Fields\Multimedia</namespace>
+
+	<updateservers>
+		<server type="extension" priority="1" name="Multimedia Field Updates">https://raw.githubusercontent.com/shivayanamahom/plg_fields_multimedia/main/updates.xml</server>
+	</updateservers>
+
+	<files>
+		<folder plugin="multimedia">services</folder>
+		<folder>layouts</folder>
+		<folder>params</folder>
+		<folder>src</folder>
+		<folder>tmpl</folder>
+	</files>
+
+	<media destination="plg_fields_multimedia" folder="media">
+		<filename>joomla.asset.json</filename>
+		<folder>css</folder>
+		<folder>js</folder>
+	</media>
+
+	<languages folder="language">
+		<language tag="en-GB">en-GB/plg_fields_multimedia.ini</language>
+		<language tag="en-GB">en-GB/plg_fields_multimedia.sys.ini</language>
+		<language tag="ru-RU">ru-RU/plg_fields_multimedia.ini</language>
+		<language tag="ru-RU">ru-RU/plg_fields_multimedia.sys.ini</language>
+	</languages>
+</extension>

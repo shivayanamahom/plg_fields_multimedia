@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<fields name="fieldparams">
+		<fieldset name="fieldparams">
+
+			<!-- Режим: выбирается один раз и после сохранения поля не меняется -->
+			<field
+				name="mode"
+				type="radio"
+				label="PLG_FIELDS_MULTIMEDIA_MODE"
+				description="PLG_FIELDS_MULTIMEDIA_MODE_DESC"
+				layout="joomla.form.field.radio.buttons"
+				default="gallery"
+				validate="options"
+			>
+				<option value="gallery">PLG_FIELDS_MULTIMEDIA_MODE_GALLERY</option>
+				<option value="files">PLG_FIELDS_MULTIMEDIA_MODE_FILES</option>
+			</field>
+
+			<!-- ============ Общие настройки ============ -->
+			<field
+				name="spacer_storage"
+				type="spacer"
+				label="PLG_FIELDS_MULTIMEDIA_SECTION_STORAGE"
+				class="text"
+			/>
+
+			<field
+				name="directory"
+				type="text"
+				label="PLG_FIELDS_MULTIMEDIA_DIRECTORY"
+				description="PLG_FIELDS_MULTIMEDIA_DIRECTORY_DESC"
+				default="multimedia"
+				hint="multimedia"
+				maxlength="100"
+			/>
+
+			<field
+				name="subfolders"
+				type="list"
+				label="PLG_FIELDS_MULTIMEDIA_SUBFOLDERS"
+				description="PLG_FIELDS_MULTIMEDIA_SUBFOLDERS_DESC"
+				default="none"
+				validate="options"
+			>
+				<option value="none">PLG_FIELDS_MULTIMEDIA_SUBFOLDERS_NONE</option>
+				<option value="month">PLG_FIELDS_MULTIMEDIA_SUBFOLDERS_MONTH</option>
+				<option value="field">PLG_FIELDS_MULTIMEDIA_SUBFOLDERS_FIELD</option>
+			</field>
+
+			<field
+				name="max_files"
+				type="number"
+				label="PLG_FIELDS_MULTIMEDIA_MAX_FILES"
+				description="PLG_FIELDS_MULTIMEDIA_MAX_FILES_DESC"
+				default="30"
+				min="1"
+				max="200"
+				step="1"
+			/>
+
+			<field
+				name="max_size"
+				type="number"
+				label="PLG_FIELDS_MULTIMEDIA_MAX_SIZE"
+				description="PLG_FIELDS_MULTIMEDIA_MAX_SIZE_DESC"
+				default="10"
+				min="1"
+				max="200"
+				step="1"
+			/>
+
+			<field
+				name="delete_files"
+				type="radio"
+				label="PLG_FIELDS_MULTIMEDIA_DELETE_FILES"
+				description="PLG_FIELDS_MULTIMEDIA_DELETE_FILES_DESC"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				filter="integer"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<!-- ============ Режим «Галерея» ============ -->
+			<field
+				name="spacer_images"
+				type="spacer"
+				label="PLG_FIELDS_MULTIMEDIA_SECTION_IMAGES"
+				class="text"
+				showon="mode:gallery"
+			/>
+
+			<field
+				name="image_resize"
+				type="list"
+				label="PLG_FIELDS_MULTIMEDIA_IMAGE_RESIZE"
+				description="PLG_FIELDS_MULTIMEDIA_IMAGE_RESIZE_DESC"
+				default="contain"
+				validate="options"
+				showon="mode:gallery"
+			>
+				<option value="none">PLG_FIELDS_MULTIMEDIA_IMAGE_RESIZE_NONE</option>
+				<option value="contain">PLG_FIELDS_MULTIMEDIA_IMAGE_RESIZE_CONTAIN</option>
+				<option value="cover">PLG_FIELDS_MULTIMEDIA_IMAGE_RESIZE_COVER</option>
+			</field>
+
+			<field
+				name="image_width"
+				type="number"
+				label="PLG_FIELDS_MULTIMEDIA_IMAGE_WIDTH"
+				default="1920"
+				min="100"
+				max="6000"
+				step="10"
+				showon="mode:gallery[AND]image_resize!:none"
+			/>
+
+			<field
+				name="image_height"
+				type="number"
+				label="PLG_FIELDS_MULTIMEDIA_IMAGE_HEIGHT"
+				default="1280"
+				min="100"
+				max="6000"
+				step="10"
+				showon="mode:gallery[AND]image_resize!:none"
+			/>
+
+			<field
+				name="image_quality"
+				type="number"
+				label="PLG_FIELDS_MULTIMEDIA_IMAGE_QUALITY"
+				description="PLG_FIELDS_MULTIMEDIA_IMAGE_QUALITY_DESC"
+				default="85"
+				min="40"
+				max="100"
+				step="1"
+				showon="mode:gallery"
+			/>
+
+			<field
+				name="image_webp"
+				type="radio"
+				label="PLG_FIELDS_MULTIMEDIA_IMAGE_WEBP"
+				description="PLG_FIELDS_MULTIMEDIA_IMAGE_WEBP_DESC"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				filter="integer"
+				showon="mode:gallery"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
+				name="spacer_display"
+				type="spacer"
+				label="PLG_FIELDS_MULTIMEDIA_SECTION_GALLERY_DISPLAY"
+				class="text"
+				showon="mode:gallery"
+			/>
+
+			<field
+				name="gallery_layout"
+				type="list"
+				label="PLG_FIELDS_MULTIMEDIA_GALLERY_LAYOUT"
+				default="grid"
+				validate="options"
+				showon="mode:gallery"
+			>
+				<option value="grid">PLG_FIELDS_MULTIMEDIA_GALLERY_LAYOUT_GRID</option>
+				<option value="slider">PLG_FIELDS_MULTIMEDIA_GALLERY_LAYOUT_SLIDER</option>
+			</field>
+
+			<field
+				name="columns"
+				type="list"
+				label="PLG_FIELDS_MULTIMEDIA_COLUMNS"
+				description="PLG_FIELDS_MULTIMEDIA_COLUMNS_DESC"
+				default="3"
+				validate="options"
+				showon="mode:gallery"
+			>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+			</field>
+
+			<field
+				name="thumb_width"
+				type="number"
+				label="PLG_FIELDS_MULTIMEDIA_THUMB_WIDTH"
+				description="PLG_FIELDS_MULTIMEDIA_THUMB_DESC"
+				default="600"
+				min="0"
+				max="2000"
+				step="10"
+				showon="mode:gallery"
+			/>
+
+			<field
+				name="thumb_height"
+				type="number"
+				label="PLG_FIELDS_MULTIMEDIA_THUMB_HEIGHT"
+				description="PLG_FIELDS_MULTIMEDIA_THUMB_DESC"
+				default="400"
+				min="0"
+				max="2000"
+				step="10"
+				showon="mode:gallery[AND]thumb_width!:0"
+			/>
+
+			<field
+				name="show_captions"
+				type="radio"
+				label="PLG_FIELDS_MULTIMEDIA_SHOW_CAPTIONS"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				filter="integer"
+				showon="mode:gallery"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
+				name="lightbox"
+				type="radio"
+				label="PLG_FIELDS_MULTIMEDIA_LIGHTBOX"
+				description="PLG_FIELDS_MULTIMEDIA_LIGHTBOX_DESC"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				filter="integer"
+				showon="mode:gallery"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
+				name="slider_autoplay"
+				type="number"
+				label="PLG_FIELDS_MULTIMEDIA_SLIDER_AUTOPLAY"
+				description="PLG_FIELDS_MULTIMEDIA_SLIDER_AUTOPLAY_DESC"
+				default="0"
+				min="0"
+				max="30"
+				step="1"
+				showon="mode:gallery[AND]gallery_layout:slider"
+			/>
+
+			<!-- ============ Режим «Файлы» ============ -->
+			<field
+				name="spacer_files"
+				type="spacer"
+				label="PLG_FIELDS_MULTIMEDIA_SECTION_FILES"
+				class="text"
+				showon="mode:files"
+			/>
+
+			<field
+				name="file_extensions"
+				type="text"
+				label="PLG_FIELDS_MULTIMEDIA_FILE_EXTENSIONS"
+				description="PLG_FIELDS_MULTIMEDIA_FILE_EXTENSIONS_DESC"
+				default="pdf,doc,docx,xls,xlsx,ppt,pptx,odt,ods,txt,csv,zip"
+				maxlength="300"
+				showon="mode:files"
+			/>
+
+			<field
+				name="files_layout"
+				type="list"
+				label="PLG_FIELDS_MULTIMEDIA_FILES_LAYOUT"
+				default="list"
+				validate="options"
+				showon="mode:files"
+			>
+				<option value="list">PLG_FIELDS_MULTIMEDIA_FILES_LAYOUT_LIST</option>
+				<option value="cards">PLG_FIELDS_MULTIMEDIA_FILES_LAYOUT_CARDS</option>
+			</field>
+
+			<field
+				name="show_size"
+				type="radio"
+				label="PLG_FIELDS_MULTIMEDIA_SHOW_SIZE"
+				layout="joomla.form.field.radio.switcher"
+				default="1"
+				filter="integer"
+				showon="mode:files"
+			>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+
+			<field
+				name="download"
+				type="radio"
+				label="PLG_FIELDS_MULTIMEDIA_DOWNLOAD"
+				description="PLG_FIELDS_MULTIMEDIA_DOWNLOAD_DESC"
+				layout="joomla.form.field.radio.switcher"
+				default="0"
+				filter="integer"
+				showon="mode:files"
+			>
+				<option value="0">PLG_FIELDS_MULTIMEDIA_DOWNLOAD_OPEN</option>
+				<option value="1">PLG_FIELDS_MULTIMEDIA_DOWNLOAD_SAVE</option>
+			</field>
+
+		</fieldset>
+	</fields>
+</form>

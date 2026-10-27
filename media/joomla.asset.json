@@ -1,0 +1,46 @@
+{
+	"$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+	"name": "plg_fields_multimedia",
+	"version": "2.0.0",
+	"description": "Multimedia custom field: gallery and files",
+	"license": "GPL-2.0-or-later",
+	"assets": [
+		{
+			"name": "plg_fields_multimedia.field",
+			"description": "Field input (administrator and front-end forms)",
+			"type": "style",
+			"uri": "plg_fields_multimedia/css/field.css",
+			"version": "2.0.0"
+		},
+		{
+			"name": "plg_fields_multimedia.field",
+			"description": "Field input (administrator and front-end forms)",
+			"type": "script",
+			"uri": "plg_fields_multimedia/js/field.js",
+			"version": "2.0.0",
+			"attributes": {
+				"defer": true
+			},
+			"dependencies": [
+				"core"
+			]
+		},
+		{
+			"name": "plg_fields_multimedia.site",
+			"description": "Gallery and file list on the site",
+			"type": "style",
+			"uri": "plg_fields_multimedia/css/site.css",
+			"version": "2.0.0"
+		},
+		{
+			"name": "plg_fields_multimedia.site",
+			"description": "Slider and built-in lightbox; binds WT Fancybox when it is connected",
+			"type": "script",
+			"uri": "plg_fields_multimedia/js/site.js",
+			"version": "2.0.0",
+			"attributes": {
+				"defer": true
+			}
+		}
+	]
+}
