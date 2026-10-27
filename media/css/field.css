@@ -3,7 +3,7 @@
  * панель загрузки и карточки строк в колонках.
  */
 .mm-field {
-	--mm-card-min: 15rem;
+	--mm-card-min: 18rem;
 	--mm-gap: 1rem;
 	--mm-border: var(--template-bg-dark-20, rgba(128, 128, 128, 0.35));
 	--mm-accent: var(--template-link-color, #2a69b8);
@@ -84,61 +84,85 @@
 	align-items: start;
 }
 
+/* Общая кнопка «+» над карточками */
 .mm-field .subform-repeatable > .btn-toolbar {
 	grid-column: 1 / -1;
 }
 
 .mm-field .subform-repeatable-group {
-	position: relative;
 	display: flex;
 	flex-direction: column;
-	gap: 0.5rem;
 	min-width: 0;
-	padding: 0.5rem;
+	overflow: hidden;
 	border: 1px solid var(--mm-border);
 	border-radius: var(--mm-radius);
-}
-
-.mm-field .subform-repeatable-group > .btn-toolbar {
-	order: 2;
-	justify-content: space-between;
-}
-
-.mm-field .subform-repeatable-group .control-group {
-	margin: 0;
-}
-
-.mm-field .subform-repeatable-group .group-add,
-.mm-field .subform-repeatable-group .group-move-up,
-.mm-field .subform-repeatable-group .group-move-down {
-	display: none;
 }
 
 .mm-field .subform-repeatable-group[draggable="true"] {
 	opacity: 0.5;
 }
 
-/* Поле «Медиа» внутри карточки */
+.mm-field .subform-repeatable-group .control-group {
+	margin: 0;
+	padding: 0 0.5rem;
+}
+
+.mm-field .subform-repeatable-group .control-group:last-of-type {
+	padding-bottom: 0.5rem;
+}
+
+/* Кнопки строки внизу карточки: «+», «−», перемещение на всю ширину */
+.mm-field .subform-repeatable-group > .btn-toolbar {
+	order: 9;
+	width: 100%;
+	margin: 0;
+}
+
+.mm-field .subform-repeatable-group > .btn-toolbar .btn-group {
+	display: flex;
+	width: 100%;
+}
+
+.mm-field .subform-repeatable-group > .btn-toolbar .btn {
+	position: static;
+	flex: 1 1 0;
+	border-radius: 0;
+}
+
+.mm-field .subform-repeatable-group .group-move-up,
+.mm-field .subform-repeatable-group .group-move-down {
+	display: none;
+}
+
+/* Поле «Медиа» внутри карточки: крупное превью на светлом фоне */
 .mm-field joomla-field-media {
 	display: block;
 	width: 100%;
 }
 
+.mm-field .subform-repeatable-group .control-group:first-of-type {
+	padding: 0;
+}
+
 .mm-field joomla-field-media .field-media-preview {
 	display: grid;
 	place-items: center;
-	height: 10rem;
+	aspect-ratio: 4 / 3;
+	margin: 0;
+	padding: 0.5rem;
 	overflow: hidden;
+	background: #f8f9fa;
 }
 
 .mm-field joomla-field-media .field-media-preview img {
 	max-width: 100%;
 	max-height: 100%;
-	object-fit: cover;
+	object-fit: contain;
 }
 
 .mm-field joomla-field-media .input-group {
 	flex-wrap: nowrap;
+	padding: 0.5rem 0.5rem 0;
 }
 
 .mm-field joomla-field-media .field-media-input {
