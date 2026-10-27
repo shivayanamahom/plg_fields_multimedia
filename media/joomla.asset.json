@@ -9,14 +9,14 @@
 			"name": "plg_fields_multimedia.field",
 			"description": "Field input (administrator and front-end forms)",
 			"type": "style",
-			"uri": "plg_fields_multimedia/css/field.css",
+			"uri": "plg_fields_multimedia/field.css",
 			"version": "2.0.0"
 		},
 		{
 			"name": "plg_fields_multimedia.field",
 			"description": "Field input (administrator and front-end forms)",
 			"type": "script",
-			"uri": "plg_fields_multimedia/js/field.js",
+			"uri": "plg_fields_multimedia/field.js",
 			"version": "2.0.0",
 			"attributes": {
 				"defer": true
@@ -29,14 +29,14 @@
 			"name": "plg_fields_multimedia.site",
 			"description": "Gallery and file list on the site",
 			"type": "style",
-			"uri": "plg_fields_multimedia/css/site.css",
+			"uri": "plg_fields_multimedia/site.css",
 			"version": "2.0.0"
 		},
 		{
 			"name": "plg_fields_multimedia.site",
 			"description": "Slider and built-in lightbox; binds WT Fancybox when it is connected",
 			"type": "script",
-			"uri": "plg_fields_multimedia/js/site.js",
+			"uri": "plg_fields_multimedia/site.js",
 			"version": "2.0.0",
 			"attributes": {
 				"defer": true
