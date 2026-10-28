@@ -119,7 +119,15 @@ class MultimediaField extends SubformField
             return $subform;
         }
 
-        $wa = Factory::getApplication()->getDocument()->getWebAssetManager();
+        $app      = Factory::getApplication();
+        $document = method_exists($app, 'getDocument') ? $app->getDocument() : null;
+
+        // Без документа страницы (запрос API/MCP, консоль) скрипты и стили подключать некуда.
+        if ($document === null) {
+            return $subform;
+        }
+
+        $wa = $document->getWebAssetManager();
         $wa->getRegistry()->addExtensionRegistryFile('plg_fields_multimedia');
         $wa->useStyle('plg_fields_multimedia.field')->useScript('plg_fields_multimedia.field');
 

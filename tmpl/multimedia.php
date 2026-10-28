@@ -51,10 +51,17 @@ if (!$items) {
 	return;
 }
 
-$path = MediaHelper::layoutPath();
-$wa   = Factory::getApplication()->getDocument()->getWebAssetManager();
-$wa->getRegistry()->addExtensionRegistryFile('plg_fields_multimedia');
-$wa->useStyle('plg_fields_multimedia.site');
+$path     = MediaHelper::layoutPath();
+$app      = Factory::getApplication();
+$document = method_exists($app, 'getDocument') ? $app->getDocument() : null;
+
+// Вне страницы сайта (запрос API/MCP, консоль) документа нет: разметку выводим, ассеты не подключаем.
+$wa = $document ? $document->getWebAssetManager() : null;
+
+if ($wa) {
+	$wa->getRegistry()->addExtensionRegistryFile('plg_fields_multimedia');
+	$wa->useStyle('plg_fields_multimedia.site');
+}
 
 if ($settings['mode'] === MediaHelper::MODE_FILES) {
 	echo LayoutHelper::render('plg_fields_multimedia.files', ['items' => $items, 'settings' => $settings], $path);
@@ -66,14 +73,14 @@ if ($settings['mode'] === MediaHelper::MODE_FILES) {
 $engine = 'none';
 
 if ($settings['lightbox']) {
-	$engine = $wa->assetExists('preset', 'wtfancybox') ? 'fancybox' : 'builtin';
+	$engine = $wa && $wa->assetExists('preset', 'wtfancybox') ? 'fancybox' : 'builtin';
 
 	if ($engine === 'fancybox') {
 		$wa->usePreset('wtfancybox');
 	}
 }
 
-$wa->useScript('plg_fields_multimedia.site');
+$wa?->useScript('plg_fields_multimedia.site');
 
 echo LayoutHelper::render('plg_fields_multimedia.gallery', [
 	'items'    => $items,

@@ -77,6 +77,8 @@
 .mm-gallery--slider .mm-list {
 	display: flex;
 	gap: var(--mm-gap);
+	/* Шаблоны вроде «.content ul { overflow: hidden }» обрезали бы список, и прокручивать было бы нечего. */
+	overflow: visible;
 }
 
 .mm-gallery--slider .mm-cell {
