@@ -6,6 +6,22 @@
 		<element>multimedia</element>
 		<type>plugin</type>
 		<folder>fields</folder>
+		<version>2.0.2</version>
+		<infourl title="Multimedia Field v2.0.2">https://github.com/shivayanamahom/plg_fields_multimedia/releases/tag/v2.0.2</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://github.com/shivayanamahom/plg_fields_multimedia/releases/download/v2.0.2/plg_fields_multimedia-2.0.2.zip</downloadurl>
+		</downloads>
+		<sha256>8c349d5f26d8afb7477267f2cf57d00ee76a4ba198313e30f4344ac0e19a94c4</sha256>
+		<maintainer>Dharma Design</maintainer>
+		<maintainerurl>https://github.com/shivayanamahom</maintainerurl>
+		<targetplatform name="joomla" version="((5|6)\..*)" />
+	</update>
+	<update>
+		<name>Multimedia Field</name>
+		<description>Multimedia Field — поле галереи изображений и списка файлов для Joomla 5/6</description>
+		<element>multimedia</element>
+		<type>plugin</type>
+		<folder>fields</folder>
 		<version>2.0.1</version>
 		<infourl title="Multimedia Field v2.0.1">https://github.com/shivayanamahom/plg_fields_multimedia/releases/tag/v2.0.1</infourl>
 		<downloads>
