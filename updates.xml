@@ -6,6 +6,7 @@
 		<element>multimedia</element>
 		<type>plugin</type>
 		<folder>fields</folder>
+		<client>site</client>
 		<version>2.0.2</version>
 		<infourl title="Multimedia Field v2.0.2">https://github.com/shivayanamahom/plg_fields_multimedia/releases/tag/v2.0.2</infourl>
 		<downloads>
@@ -22,6 +23,7 @@
 		<element>multimedia</element>
 		<type>plugin</type>
 		<folder>fields</folder>
+		<client>site</client>
 		<version>2.0.1</version>
 		<infourl title="Multimedia Field v2.0.1">https://github.com/shivayanamahom/plg_fields_multimedia/releases/tag/v2.0.1</infourl>
 		<downloads>
@@ -38,6 +40,7 @@
 		<element>multimedia</element>
 		<type>plugin</type>
 		<folder>fields</folder>
+		<client>site</client>
 		<version>2.0.0</version>
 		<infourl title="Multimedia Field v2.0.0">https://github.com/shivayanamahom/plg_fields_multimedia/releases/tag/v2.0.0</infourl>
 		<downloads>

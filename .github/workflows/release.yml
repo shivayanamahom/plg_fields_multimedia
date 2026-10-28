@@ -64,6 +64,7 @@ jobs:
               ("element", "multimedia"),
               ("type", "plugin"),
               ("folder", "fields"),
+              ("client", "site"),
               ("version", version),
           ):
               ET.SubElement(update, tag).text = value
