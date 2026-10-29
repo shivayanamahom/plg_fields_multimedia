@@ -5,6 +5,14 @@
 [![PHP](https://img.shields.io/badge/PHP-8.2%2B-777bb4.svg)](https://www.php.net/)
 [![License: GPL-2.0+](https://img.shields.io/badge/License-GPL--2.0%2B-blue.svg)](LICENSE)
 
+<!-- ai-notice -->
+> [!NOTE]
+> **О проекте.** Этот проект написан при помощи ИИ для моего собственного использования и опубликован «как есть» (*as is*). Он может содержать ошибки и подходить не для всех сайтов и версий Joomla. Гарантий, поддержки и сроков исправления я не обещаю. Перед использованием изучите код и проверьте его на тестовой копии сайта, всё на ваш риск. Идеи и замечания приветствуются (Issues, Pull Request), но отвечу и приму их не обязательно.
+>
+> *AI-assisted and built for my own use. Provided **as is**, without warranty or support. Review the code and test on a staging copy first; use at your own risk. Issues and PRs are welcome, but no response is guaranteed.*
+
+<!-- /ai-notice -->
+
 Плагин пользовательского поля Joomla 5/6 для **галереи изображений** и **списка файлов**. Загрузка с компьютера или выбор из менеджера медиа, миниатюры, слайдер, просмотр через [WT Fancybox](https://web-tolk.ru/en/dev/wt-fancybox) и макеты, которые можно переопределить в шаблоне.
 
 > **Для разработчиков и ИИ-агентов:** перед правками прочитайте [AGENTS.md](AGENTS.md) — там архитектура, правила безопасности и порядок сборки.
